@@ -1,0 +1,183 @@
+// 📁 database/firestore-schema.js
+
+const schema = {
+  // USERS COLLECTION
+  users: {
+    userId: "string (auto)",
+    email: "string",
+    username: "string (unique)",
+    displayName: "string",
+    bio: "string (max 160)",
+    avatar: "string (url)",
+    coverPhoto: "string (url)",
+    skills: ["React", "Node.js"],
+    
+    // Role & Status
+    role: "intern | admin",
+    isActive: "boolean",
+    isBanned: "boolean",
+    banReason: "string | null",
+    
+    // Internship Data
+    internshipStart: "timestamp",
+    internshipEnd: "timestamp",
+    internshipStatus: "active | completed | terminated",
+    
+    // Stats (denormalized)
+    stats: {
+      totalProjects: 0,
+      totalLikesReceived: 0,
+      totalCommentsReceived: 0
+    },
+    
+    // Timestamps
+    createdAt: "timestamp",
+    lastLoginAt: "timestamp",
+    updatedAt: "timestamp"
+  },
+
+  // POSTS COLLECTION (Projects)
+  posts: {
+    postId: "string (auto)",
+    authorId: "string (ref: users)",
+    authorUsername: "string (denormalized)",
+    authorAvatar: "string (denormalized)",
+    
+    title: "string",
+    description: "string (rich text)",
+    
+    // Media
+    mediaType: "image | video | youtube",
+    mediaUrl: "string",
+    thumbnailUrl: "string",
+    
+    // Links
+    githubUrl: "string | null",
+    demoUrl: "string | null",
+    
+    // Tags
+    tags: ["React", "AI", "UI/UX"],
+    
+    // Status
+    status: "draft | pending | approved | rejected | featured",
+    rejectionReason: "string | null",
+    approvedBy: "string (adminId)",
+    approvedAt: "timestamp",
+    
+    // Engagement Stats
+    stats: {
+      likesCount: 0,
+      commentsCount: 0,
+      savesCount: 0,
+      viewsCount: 0
+    },
+    
+    // Timestamps
+    createdAt: "timestamp",
+    updatedAt: "timestamp",
+    publishedAt: "timestamp | null"
+  },
+
+  // COMMENTS COLLECTION
+  comments: {
+    commentId: "string (auto)",
+    postId: "string (ref: posts)",
+    authorId: "string (ref: users)",
+    authorUsername: "string",
+    authorAvatar: "string",
+    
+    content: "string (max 1000)",
+    parentCommentId: "string | null", // For replies
+    likeCount: 0,
+    
+    isDeleted: false,
+    deletedBy: "string | null",
+    
+    createdAt: "timestamp",
+    updatedAt: "timestamp"
+  },
+
+  // LIKES COLLECTION
+  likes: {
+    likeId: "string (auto)",
+    userId: "string (ref: users)",
+    targetType: "post | comment",
+    targetId: "string",
+    
+    createdAt: "timestamp"
+  },
+
+  // SAVES COLLECTION (Bookmarks)
+  saves: {
+    saveId: "string (auto)",
+    userId: "string",
+    postId: "string",
+    
+    createdAt: "timestamp"
+  },
+
+  // NOTIFICATIONS COLLECTION
+  notifications: {
+    notificationId: "string (auto)",
+    userId: "string (recipient)",
+    type: "like | comment | post_approved | post_rejected",
+    triggeredBy: "string (userId)",
+    
+    title: "string",
+    content: "string",
+    link: "string (url)",
+    
+    isRead: false,
+    
+    createdAt: "timestamp"
+  },
+
+  // ADMIN LOGS (CRITICAL)
+  adminLogs: {
+    logId: "string (auto)",
+    adminId: "string (ref: users)",
+    adminUsername: "string",
+    
+    action: "APPROVE_POST | REJECT_POST | DELETE_POST | BAN_USER | EDIT_USER | CHANGE_INTERNSHIP | DELETE_COMMENT",
+    
+    targetType: "user | post | comment",
+    targetId: "string",
+    targetUsername: "string | null",
+    
+    details: {
+      before: "object | null",
+      after: "object | null",
+      reason: "string | null"
+    },
+    
+    ipAddress: "string",
+    userAgent: "string",
+    
+    createdAt: "timestamp"
+  },
+
+  // AI USAGE LOGS
+  aiUsage: {
+    usageId: "string (auto)",
+    userId: "string",
+    feature: "improve_description | code_fix | chat",
+    promptLength: 0,
+    responseLength: 0,
+    
+    createdAt: "timestamp"
+  }
+
+  // FLAGGED CONTENT (for moderation)
+  flaggedContent: {
+    flagId: "string (auto)",
+    targetType: "post | comment",
+    targetId: "string",
+    reportedBy: "string (userId)",
+    reason: "string",
+    
+    status: "pending | reviewed | dismissed",
+    resolvedBy: "string | null",
+    
+    createdAt: "timestamp"
+  }
+};
