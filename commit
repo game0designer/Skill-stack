@@ -1,3 +1,5 @@
+
+
 # Navigate to project root (where client and server folders are)
 # cd C:\your-project-path
 
@@ -1158,3 +1160,26 @@ Set-Location "database"
 # Install dependencies
 npm init -y
 npm install firebase-admin fire
+
+
+
+
+
+
+
+
+# Create database directory
+New-Item -ItemType Directory -Force -Path "database" | Out-Null
+Set-Location "database"
+
+# Create subdirectories
+New-Item -ItemType Directory -Force -Path "firestore\collections" | Out-Null
+New-Item -ItemType Directory -Force -Path "firestore\indexes" | Out-Null
+New-Item -ItemType Directory -Force -Path "firestore\rules" | Out-Null
+New-Item -ItemType Directory -Force -Path "firebase" | Out-Null
+New-Item -ItemType Directory -Force -Path "migrations" | Out-Null
+New-Item -ItemType Directory -Force -Path "backups" | Out-Null
+New-Item -ItemType Directory -Force -Path "scripts" | Out-Null
+New-Item -ItemType Directory -Force -Path "seeders" | Out-Null
+
+Write-Host "✅ Database directories created" -ForegroundColor Green
