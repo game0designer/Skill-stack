@@ -1,94 +1,49 @@
-# Navigate to project root
-# cd C:\your-project-path
+# Navigate to client/src/pages
+cd client/src/pages
 
-# Create docs directory
-New-Item -ItemType Directory -Force -Path "docs" | Out-Null
-Set-Location "docs"
+# Create the complete page structure with separate HR and Intern folders
+New-Item -ItemType Directory -Force -Path "hr" | Out-Null
+New-Item -ItemType Directory -Force -Path "intern" | Out-Null
+New-Item -ItemType Directory -Force -Path "common" | Out-Null
+New-Item -ItemType Directory -Force -Path "admin" | Out-Null
 
-# Create subdirectories
-New-Item -ItemType Directory -Force -Path "api" | Out-Null
-New-Item -ItemType Directory -Force -Path "guides" | Out-Null
-New-Item -ItemType Directory -Force -Path "setup" | Out-Null
-New-Item -ItemType Directory -Force -Path "architecture" | Out-Null
-New-Item -ItemType Directory -Force -Path "database" | Out-Null
-New-Item -ItemType Directory -Force -Path "deployment" | Out-Null
-New-Item -ItemType Directory -Force -Path "testing" | Out-Null
+Write-Host "✅ Page directories created" -ForegroundColor Green
 
-Write-Host "✅ Docs directories created" -ForegroundColor Green
+# ============ COMMON PAGES (Both can access) ============
+New-Item -ItemType File -Force -Path "common\LandingPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "common\ProfilePage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "common\ProjectPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "common\SettingsPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "common\NotFoundPage.jsx" | Out-Null
 
-# Create API documentation files
-New-Item -ItemType File -Force -Path "api\authentication.md" | Out-Null
-New-Item -ItemType File -Force -Path "api\users.md" | Out-Null
-New-Item -ItemType File -Force -Path "api\posts.md" | Out-Null
-New-Item -ItemType File -Force -Path "api\comments.md" | Out-Null
-New-Item -ItemType File -Force -Path "api\admin.md" | Out-Null
-New-Item -ItemType File -Force -Path "api\ai-assistant.md" | Out-Null
-New-Item -ItemType File -Force -Path "api\websocket.md" | Out-Null
-New-Item -ItemType File -Force -Path "api\index.md" | Out-Null
+# ============ INTERN PAGES ============
+New-Item -ItemType File -Force -Path "intern\InternDashboard.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "intern\FeedPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "intern\MyProjectsPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "intern\CreateProjectPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "intern\AIPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "intern\TasksPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "intern\InternshipProgressPage.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "intern\NotificationsPage.jsx" | Out-Null
 
-# Create guide files
-New-Item -ItemType File -Force -Path "guides\getting-started.md" | Out-Null
-New-Item -ItemType File -Force -Path "guides\intern-onboarding.md" | Out-Null
-New-Item -ItemType File -Force -Path "guides\project-submission.md" | Out-Null
-New-Item -ItemType File -Force -Path "guides\admin-guide.md" | Out-Null
-New-Item -ItemType File -Force -Path "guides\ai-assistant-guide.md" | Out-Null
-New-Item -ItemType File -Force -Path "guides\best-practices.md" | Out-Null
-New-Item -ItemType File -Force -Path "guides\faq.md" | Out-Null
+# ============ HR PAGES (Human Resources / Admin) ============
+New-Item -ItemType File -Force -Path "hr\HRDashboard.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "hr\InternManagement.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "hr\InternApplications.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "hr\InternEvaluation.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "hr\AttendanceTracking.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "hr\PerformanceReviews.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "hr\InternOnboarding.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "hr\InternOffboarding.jsx" | Out-Null
 
-# Create setup files
-New-Item -ItemType File -Force -Path "setup\installation.md" | Out-Null
-New-Item -ItemType File -Force -Path "setup\environment-variables.md" | Out-Null
-New-Item -ItemType File -Force -Path "setup\firebase-setup.md" | Out-Null
-New-Item -ItemType File -Force -Path "setup\database-setup.md" | Out-Null
-New-Item -ItemType File -Force -Path "setup\troubleshooting.md" | Out-Null
+# ============ SUPER ADMIN PAGES (Platform Control) ============
+New-Item -ItemType File -Force -Path "admin\AdminDashboard.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "admin\UserManagement.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "admin\PostManagement.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "admin\CommentModeration.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "admin\ContentApproval.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "admin\SystemLogs.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "admin\AIControlPanel.jsx" | Out-Null
+New-Item -ItemType File -Force -Path "admin\PlatformAnalytics.jsx" | Out-Null
 
-# Create architecture files
-New-Item -ItemType File -Force -Path "architecture\overview.md" | Out-Null
-New-Item -ItemType File -Force -Path "architecture\frontend.md" | Out-Null
-New-Item -ItemType File -Force -Path "architecture\backend.md" | Out-Null
-New-Item -ItemType File -Force -Path "architecture\database-schema.md" | Out-Null
-New-Item -ItemType File -Force -Path "architecture\security.md" | Out-Null
-New-Item -ItemType File -Force -Path "architecture\scalability.md" | Out-Null
-
-# Create database files
-New-Item -ItemType File -Force -Path "database\collections.md" | Out-Null
-New-Item -ItemType File -Force -Path "database\relationships.md" | Out-Null
-New-Item -ItemType File -Force -Path "database\indexes.md" | Out-Null
-New-Item -ItemType File -Force -Path "database\security-rules.md" | Out-Null
-New-Item -ItemType File -Force -Path "database\backup-strategy.md" | Out-Null
-
-# Create deployment files
-New-Item -ItemType File -Force -Path "deployment\production-guide.md" | Out-Null
-New-Item -ItemType File -Force -Path "deployment\vercel-deploy.md" | Out-Null
-New-Item -ItemType File -Force -Path "deployment\firebase-hosting.md" | Out-Null
-New-Item -ItemType File -Force -Path "deployment\ci-cd-pipeline.md" | Out-Null
-New-Item -ItemType File -Force -Path "deployment\monitoring.md" | Out-Null
-
-# Create testing files
-New-Item -ItemType File -Force -Path "testing\unit-testing.md" | Out-Null
-New-Item -ItemType File -Force -Path "testing\integration-testing.md" | Out-Null
-New-Item -ItemType File -Force -Path "testing\e2e-testing.md" | Out-Null
-New-Item -ItemType File -Force -Path "testing\api-testing.md" | Out-Null
-New-Item -ItemType File -Force -Path "testing\ci-testing.md" | Out-Null
-
-# Create root documentation files
-New-Item -ItemType File -Force -Path "README.md" | Out-Null
-New-Item -ItemType File -Force -Path "CONTRIBUTING.md" | Out-Null
-New-Item -ItemType File -Force -Path "CHANGELOG.md" | Out-Null
-New-Item -ItemType File -Force -Path "LICENSE.md" | Out-Null
-New-Item -ItemType File -Force -Path "ROADMAP.md" | Out-Null
-
-Write-Host "✅ All documentation files created" -ForegroundColor Green
-Write-Host ""
-Write-Host "📁 Docs folder structure:" -ForegroundColor Cyan
-Write-Host "docs/" -ForegroundColor Yellow
-Write-Host "├── api/            (8 files)" -ForegroundColor Gray
-Write-Host "├── guides/         (7 files)" -ForegroundColor Gray
-Write-Host "├── setup/          (5 files)" -ForegroundColor Gray
-Write-Host "├── architecture/   (6 files)" -ForegroundColor Gray
-Write-Host "├── database/       (5 files)" -ForegroundColor Gray
-Write-Host "├── deployment/     (5 files)" -ForegroundColor Gray
-Write-Host "├── testing/        (5 files)" -ForegroundColor Gray
-Write-Host "└── root files      (5 files)" -ForegroundColor Gray
-Write-Host ""
-Write-Host "📊 Total: 51 documentation files created" -ForegroundColor Green
+Write-Host "✅ All page files created" -ForegroundColor Green
