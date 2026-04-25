@@ -7,6 +7,8 @@ import ProfilePage from './pages/common/ProfilePage';
 import ProjectPage from './pages/common/ProjectPage';
 import SettingsPage from './pages/common/SettingsPage';
 import NotFoundPage from './pages/common/NotFoundPage';
+import ContactHR from './pages/common/ContactHR';        // NEW
+import HRChatPage from './pages/common/HRChatPage';      // NEW
 
 // Intern pages
 import InternDashboard from './pages/intern/InternDashboard';
@@ -27,6 +29,8 @@ import AttendanceTracking from './pages/hr/AttendanceTracking';
 import PerformanceReviews from './pages/hr/PerformanceReviews';
 import InternOnboarding from './pages/hr/InternOnboarding';
 import InternOffboarding from './pages/hr/InternOffboarding';
+import HRMessageInbox from './pages/hr/HRMessageInbox';      // NEW
+import HRTicketSystem from './pages/hr/HRTicketSystem';      // NEW
 
 // Admin pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -37,6 +41,7 @@ import ContentApproval from './pages/admin/ContentApproval';
 import SystemLogs from './pages/admin/SystemLogs';
 import AIControlPanel from './pages/admin/AIControlPanel';
 import PlatformAnalytics from './pages/admin/PlatformAnalytics';
+import HRMessagingAnalytics from './pages/admin/HRMessagingAnalytics'; // NEW
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useAuth();
@@ -51,18 +56,34 @@ const PrivateRoute = ({ children, allowedRoles }) => {
 function AppRoutes() {
   return (
     <Routes>
-      {/* Public Routes */}
+      {/* ========== PUBLIC ROUTES ========== */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/profile/:username" element={<ProfilePage />} />
       <Route path="/project/:id" element={<ProjectPage />} />
       
-      {/* Intern Routes */}
+      {/* ========== COMMON ROUTES (All Authenticated Users) ========== */}
+      <Route path="/contact-hr" element={
+        <PrivateRoute allowedRoles={['intern', 'hr', 'admin']}>
+          <ContactHR />
+        </PrivateRoute>
+      } />
+      <Route path="/hr-chat" element={
+        <PrivateRoute allowedRoles={['intern', 'hr', 'admin']}>
+          <HRChatPage />
+        </PrivateRoute>
+      } />
+      <Route path="/settings" element={
+        <PrivateRoute allowedRoles={['intern', 'hr', 'admin']}>
+          <SettingsPage />
+        </PrivateRoute>
+      } />
+      
+      {/* ========== INTERN ROUTES ========== */}
       <Route path="/intern/dashboard" element={
         <PrivateRoute allowedRoles={['intern']}>
           <InternDashboard />
         </PrivateRoute>
       } />
-       
       <Route path="/feed" element={
         <PrivateRoute allowedRoles={['intern']}>
           <FeedPage />
@@ -99,7 +120,7 @@ function AppRoutes() {
         </PrivateRoute>
       } />
       
-      {/* HR Routes */}
+      {/* ========== HR ROUTES ========== */}
       <Route path="/hr/dashboard" element={
         <PrivateRoute allowedRoles={['hr', 'admin']}>
           <HRDashboard />
@@ -140,13 +161,20 @@ function AppRoutes() {
           <InternOffboarding />
         </PrivateRoute>
       } />
-      <Route path="/settings" element={
-        <PrivateRoute allowedRoles={['intern', 'hr', 'admin']}>
-          <SettingsPage />
+      
+      {/* HR Messaging Routes */}
+      <Route path="/hr/inbox" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <HRMessageInbox />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/tickets" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <HRTicketSystem />
         </PrivateRoute>
       } />
       
-      {/* Super Admin Routes */}
+      {/* ========== SUPER ADMIN ROUTES ========== */}
       <Route path="/staff/console" element={
         <PrivateRoute allowedRoles={['admin']}>
           <AdminDashboard />
@@ -187,8 +215,13 @@ function AppRoutes() {
           <PlatformAnalytics />
         </PrivateRoute>
       } />
+      <Route path="/staff/hr-messaging" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <HRMessagingAnalytics />
+        </PrivateRoute>
+      } />
       
-      {/* 404 */}
+      {/* 404 - Must be last */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
