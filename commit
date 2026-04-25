@@ -345,3 +345,50 @@ echo "Next steps:"
 echo "1. cd client"
 echo "2. npm install"
 echo "3. npm run dev"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#errors 
+At line:151 char:23
++ cat > vite.config.js << 'EOF'
++                       ~
+Missing file specification after redirection operator.
+At line:151 char:22
++ cat > vite.config.js << 'EOF'
++                      ~
+The '<' operator is reserved for future use.
+At line:151 char:23
++ cat > vite.config.js << 'EOF'
++                       ~
+The '<' operator is reserved for future use.
+Not all parse errors were reported.  Correct the reported errors and try again.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingFileSpecification
