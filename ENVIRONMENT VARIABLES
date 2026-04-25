@@ -1,0 +1,41 @@
+# 📁 .env (root)
+
+# App
+NODE_ENV=production
+PORT=5000
+CLIENT_URL=http://localhost:3000
+
+# Firebase
+FIREBASE_API_KEY=xxx
+FIREBASE_AUTH_DOMAIN=xxx
+FIREBASE_PROJECT_ID=xxx
+FIREBASE_STORAGE_BUCKET=xxx
+
+# Database (Firestore)
+FIRESTORE_EMULATOR_HOST=localhost:8080  # dev only
+
+# AI (OpenAI/Claude)
+OPENAI_API_KEY=sk-xxx
+CLAUDE_API_KEY=xxx
+
+# Storage (Firebase Storage or AWS S3)
+S3_BUCKET_NAME=devforge-media
+AWS_ACCESS_KEY=xxx
+AWS_SECRET_KEY=xxx
+
+# JWT
+JWT_SECRET=your_super_secret_key_change_this
+
+# Email (SendGrid/Nodemailer)
+SENDGRID_API_KEY=xxx
+EMAIL_FROM=noreply@devforge.com
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000  # 15 minutes
+RATE_LIMIT_MAX_REQUESTS=100
+
+# Redis (for caching & sessions)
+REDIS_URL=redis://localhost:6379
+
+# WebSocket
+SOCKET_PORT=5001
