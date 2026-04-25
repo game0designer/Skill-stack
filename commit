@@ -1,221 +1,197 @@
-Great idea! Adding a **Contact HR** feature in the common pages so interns can message HR directly. Here's the updated structure:
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth';
 
-## 📁 **Updated Pages Structure with Contact HR**
+// Common pages
+import LandingPage from './pages/common/LandingPage';
+import ProfilePage from './pages/common/ProfilePage';
+import ProjectPage from './pages/common/ProjectPage';
+import SettingsPage from './pages/common/SettingsPage';
+import NotFoundPage from './pages/common/NotFoundPage';
 
-### **Step 1: Create Contact HR Files**
+// Intern pages
+import InternDashboard from './pages/intern/InternDashboard';
+import FeedPage from './pages/intern/FeedPage';
+import MyProjectsPage from './pages/intern/MyProjectsPage';
+import CreateProjectPage from './pages/intern/CreateProjectPage';
+import AIPage from './pages/intern/AIPage';
+import TasksPage from './pages/intern/TasksPage';
+import InternshipProgressPage from './pages/intern/InternshipProgressPage';
+import NotificationsPage from './pages/intern/NotificationsPage';
 
-```powershell
-# Navigate to client/src/pages/common
-cd client/src/pages/common
+// HR pages
+import HRDashboard from './pages/hr/HRDashboard';
+import InternManagement from './pages/hr/InternManagement';
+import InternApplications from './pages/hr/InternApplications';
+import InternEvaluation from './pages/hr/InternEvaluation';
+import AttendanceTracking from './pages/hr/AttendanceTracking';
+import PerformanceReviews from './pages/hr/PerformanceReviews';
+import InternOnboarding from './pages/hr/InternOnboarding';
+import InternOffboarding from './pages/hr/InternOffboarding';
 
-# Add Contact HR related files
-New-Item -ItemType File -Force -Path "ContactHR.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "HRChatPage.jsx" | Out-Null
+// Admin pages
+import AdminDashboard from './pages/admin/AdminDashboard';
+import UserManagement from './pages/admin/UserManagement';
+import PostManagement from './pages/admin/PostManagement';
+import CommentModeration from './pages/admin/CommentModeration';
+import ContentApproval from './pages/admin/ContentApproval';
+import SystemLogs from './pages/admin/SystemLogs';
+import AIControlPanel from './pages/admin/AIControlPanel';
+import PlatformAnalytics from './pages/admin/PlatformAnalytics';
 
-Write-Host "✅ Contact HR files added to common pages" -ForegroundColor Green
-```
+const PrivateRoute = ({ children, allowedRoles }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <Navigate to="/" />;
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/" />;
+  }
+  return children;
+};
 
-### **Step 2: Add HR Messaging Components**
-
-```powershell
-# Navigate to client/src/components
-cd client/src/components
-
-# Create HR messaging components
-New-Item -ItemType Directory -Force -Path "hr-messaging" | Out-Null
-
-# Create component files
-@(
-    "hr-messaging\HRChatWindow.jsx",
-    "hr-messaging\HRMessageList.jsx",
-    "hr-messaging\HRMessageItem.jsx",
-    "hr-messaging\HRChatSidebar.jsx",
-    "hr-messaging\ContactHRButton.jsx",
-    "hr-messaging\HRNotificationBadge.jsx",
-    "hr-messaging\MessageInput.jsx",
-    "hr-messaging\HRTypingIndicator.jsx"
-) | ForEach-Object {
-    New-Item -ItemType File -Force -Path $_ | Out-Null
-    Write-Host "Created: $_" -ForegroundColor Yellow
+function AppRoutes() {
+  return (
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/profile/:username" element={<ProfilePage />} />
+      <Route path="/project/:id" element={<ProjectPage />} />
+      
+      {/* Intern Routes */}
+      <Route path="/intern/dashboard" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <InternDashboard />
+        </PrivateRoute>
+      } />
+       
+      <Route path="/feed" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <FeedPage />
+        </PrivateRoute>
+      } />
+      <Route path="/my-projects" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <MyProjectsPage />
+        </PrivateRoute>
+      } />
+      <Route path="/create-project" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <CreateProjectPage />
+        </PrivateRoute>
+      } />
+      <Route path="/ai-assistant" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <AIPage />
+        </PrivateRoute>
+      } />
+      <Route path="/my-tasks" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <TasksPage />
+        </PrivateRoute>
+      } />
+      <Route path="/internship-progress" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <InternshipProgressPage />
+        </PrivateRoute>
+      } />
+      <Route path="/notifications" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <NotificationsPage />
+        </PrivateRoute>
+      } />
+      
+      {/* HR Routes */}
+      <Route path="/hr/dashboard" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <HRDashboard />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/interns" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternManagement />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/applications" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternApplications />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/evaluations" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternEvaluation />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/attendance" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <AttendanceTracking />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/reviews" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <PerformanceReviews />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/onboard" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternOnboarding />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/offboard" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternOffboarding />
+        </PrivateRoute>
+      } />
+      <Route path="/settings" element={
+        <PrivateRoute allowedRoles={['intern', 'hr', 'admin']}>
+          <SettingsPage />
+        </PrivateRoute>
+      } />
+      
+      {/* Super Admin Routes */}
+      <Route path="/staff/console" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <AdminDashboard />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/users" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <UserManagement />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/posts" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <PostManagement />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/comments" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <CommentModeration />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/approvals" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <ContentApproval />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/logs" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <SystemLogs />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/ai-control" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <AIControlPanel />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/analytics" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <PlatformAnalytics />
+        </PrivateRoute>
+      } />
+      
+      {/* 404 */}
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
 }
 
-Write-Host "`n✅ HR messaging components created" -ForegroundColor Green
-```
-
-### **Step 3: Add HR Database Collections (for database folder)**
-
-```powershell
-# Navigate to database/firestore/collections
-cd ../../database/firestore/collections
-
-# Create HR messaging collection schemas
-@(
-    "hrMessages.schema.js",
-    "hrConversations.schema.js",
-    "hrTickets.schema.js"
-) | ForEach-Object {
-    New-Item -ItemType File -Force -Path $_ | Out-Null
-    Write-Host "Created: $_" -ForegroundColor Yellow
-}
-
-Write-Host "`n✅ HR messaging database schemas created" -ForegroundColor Green
-```
-
-## 📊 **Complete Updated Structure**
-
-```
-client/
-├── src/
-│   ├── pages/
-│   │   ├── common/
-│   │   │   ├── LandingPage.jsx
-│   │   │   ├── ProfilePage.jsx
-│   │   │   ├── ProjectPage.jsx
-│   │   │   ├── SettingsPage.jsx
-│   │   │   ├── NotFoundPage.jsx
-│   │   │   ├── ContactHR.jsx          # NEW - Contact form
-│   │   │   └── HRChatPage.jsx         # NEW - Chat interface
-│   │   │
-│   │   ├── intern/
-│   │   │   ├── InternDashboard.jsx
-│   │   │   ├── FeedPage.jsx
-│   │   │   ├── MyProjectsPage.jsx
-│   │   │   ├── CreateProjectPage.jsx
-│   │   │   ├── AIPage.jsx
-│   │   │   ├── TasksPage.jsx
-│   │   │   ├── InternshipProgressPage.jsx
-│   │   │   └── NotificationsPage.jsx
-│   │   │
-│   │   ├── hr/
-│   │   │   ├── HRDashboard.jsx
-│   │   │   ├── InternManagement.jsx
-│   │   │   ├── InternApplications.jsx
-│   │   │   ├── InternEvaluation.jsx
-│   │   │   ├── AttendanceTracking.jsx
-│   │   │   ├── PerformanceReviews.jsx
-│   │   │   ├── InternOnboarding.jsx
-│   │   │   ├── InternOffboarding.jsx
-│   │   │   ├── HRMessageInbox.jsx     # NEW - HR message inbox
-│   │   │   └── HRTicketSystem.jsx     # NEW - Support tickets
-│   │   │
-│   │   └── admin/
-│   │       ├── AdminDashboard.jsx
-│   │       ├── UserManagement.jsx
-│   │       ├── PostManagement.jsx
-│   │       ├── CommentModeration.jsx
-│   │       ├── ContentApproval.jsx
-│   │       ├── SystemLogs.jsx
-│   │       ├── AIControlPanel.jsx
-│   │       └── PlatformAnalytics.jsx
-│   │
-│   └── components/
-│       └── hr-messaging/              # NEW - HR messaging components
-│           ├── HRChatWindow.jsx
-│           ├── HRMessageList.jsx
-│           ├── HRMessageItem.jsx
-│           ├── HRChatSidebar.jsx
-│           ├── ContactHRButton.jsx
-│           ├── HRNotificationBadge.jsx
-│           ├── MessageInput.jsx
-│           └── HRTypingIndicator.jsx
-│
-database/
-└── firestore/
-    └── collections/
-        ├── hrMessages.schema.js       # NEW
-        ├── hrConversations.schema.js  # NEW
-        └── hrTickets.schema.js        # NEW
-```
-
-## 🔧 **Complete Setup Command**
-
-```powershell
-# Run this entire script to set up HR messaging structure
-
-Write-Host "🏗️ Setting up HR Messaging Structure..." -ForegroundColor Magenta
-
-# Create HR pages
-cd client/src/pages/common
-New-Item -ItemType File -Force -Path "ContactHR.jsx" -Value "// Contact HR Page" | Out-Null
-New-Item -ItemType File -Force -Path "HRChatPage.jsx" -Value "// HR Chat Interface" | Out-Null
-
-cd ../hr
-New-Item -ItemType File -Force -Path "HRMessageInbox.jsx" -Value "// HR Message Inbox" | Out-Null
-New-Item -ItemType File -Force -Path "HRTicketSystem.jsx" -Value "// HR Support Tickets" | Out-Null
-
-# Create HR messaging components
-cd ../../components
-New-Item -ItemType Directory -Force -Path "hr-messaging" | Out-Null
-cd hr-messaging
-
-@(
-    "HRChatWindow.jsx",
-    "HRMessageList.jsx", 
-    "HRMessageItem.jsx",
-    "HRChatSidebar.jsx",
-    "ContactHRButton.jsx",
-    "HRNotificationBadge.jsx",
-    "MessageInput.jsx",
-    "HRTypingIndicator.jsx"
-) | ForEach-Object {
-    New-Item -ItemType File -Force -Path $_ -Value "// $(Split-Path $_ -Leaf)" | Out-Null
-}
-
-# Create database schemas
-cd ../../../../database/firestore/collections
-
-@(
-    "hrMessages.schema.js",
-    "hrConversations.schema.js",
-    "hrTickets.schema.js"
-) | ForEach-Object {
-    New-Item -ItemType File -Force -Path $_ -Value "// HR $(Split-Path $_ -Leaf)" | Out-Null
-}
-
-Write-Host "`n✅ HR Messaging Structure Complete!" -ForegroundColor Green
-Write-Host "📁 Added:" -ForegroundColor Cyan
-Write-Host "   - 2 HR pages (ContactHR.jsx, HRChatPage.jsx)" -ForegroundColor Yellow
-Write-Host "   - 2 HR inbox pages (HRMessageInbox.jsx, HRTicketSystem.jsx)" -ForegroundColor Yellow
-Write-Host "   - 8 HR messaging components" -ForegroundColor Yellow
-Write-Host "   - 3 Database schemas" -ForegroundColor Yellow
-```
-
-## 💬 **Features of HR Messaging System**
-
-### **For Interns:**
-- **Contact HR Button** - Floating button throughout the app
-- **Direct Messaging** - Chat with HR team
-- **Support Tickets** - Raise issues/concerns
-- **Message History** - View all conversations
-- **Attachments** - Upload screenshots/files
-- **Read Receipts** - Know when HR saw your message
-
-### **For HR:**
-- **Message Inbox** - All intern messages in one place
-- **Ticket System** - Categorize and track issues
-- **Quick Responses** - Pre-written templates
-- **Message Status** - Open/In Progress/Resolved
-- **Priority Levels** - Urgent/Normal/Low
-- **Bulk Actions** - Respond to multiple messages
-
-### **For Admins:**
-- **Monitor HR Response Time** - Track performance
-- **View All Conversations** - Quality control
-- **Escalation System** - Forward to admin if needed
-- **Analytics Dashboard** - Message volume, response rates
-
-## 🎯 **Quick Navigation Routes to Add**
-
-```javascript
-// Add to your AppRoutes.jsx
-
-// Common routes
-<Route path="/contact-hr" element={<ContactHR />} />
-<Route path="/hr-chat" element={<HRChatPage />} />
-
-// HR routes  
-<Route path="/hr/inbox" element={<HRMessageInbox />} />
-<Route path="/hr/tickets" element={<HRTicketSystem />} />
-```
-
-This creates a complete communication system between interns and HR! 🎉
+export default AppRoutes;
