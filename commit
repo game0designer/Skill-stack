@@ -1,85 +1,94 @@
-# Navigate to project root (where client, server, database folders are)
+# Navigate to project root
 # cd C:\your-project-path
 
-# Create shared directory
-New-Item -ItemType Directory -Force -Path "shared" | Out-Null
-Set-Location "shared"
+# Create docs directory
+New-Item -ItemType Directory -Force -Path "docs" | Out-Null
+Set-Location "docs"
 
 # Create subdirectories
-New-Item -ItemType Directory -Force -Path "types" | Out-Null
-New-Item -ItemType Directory -Force -Path "constants" | Out-Null
-New-Item -ItemType Directory -Force -Path "utils" | Out-Null
-New-Item -ItemType Directory -Force -Path "validators" | Out-Null
-New-Item -ItemType Directory -Force -Path "schemas" | Out-Null
-New-Item -ItemType Directory -Force -Path "enums" | Out-Null
-New-Item -ItemType Directory -Force -Path "interfaces" | Out-Null
+New-Item -ItemType Directory -Force -Path "api" | Out-Null
+New-Item -ItemType Directory -Force -Path "guides" | Out-Null
+New-Item -ItemType Directory -Force -Path "setup" | Out-Null
+New-Item -ItemType Directory -Force -Path "architecture" | Out-Null
+New-Item -ItemType Directory -Force -Path "database" | Out-Null
+New-Item -ItemType Directory -Force -Path "deployment" | Out-Null
+New-Item -ItemType Directory -Force -Path "testing" | Out-Null
 
-Write-Host "✅ Shared directories created" -ForegroundColor Green
+Write-Host "✅ Docs directories created" -ForegroundColor Green
 
-# Create TypeScript type definition files
-New-Item -ItemType File -Force -Path "types\user.types.js" | Out-Null
-New-Item -ItemType File -Force -Path "types\post.types.js" | Out-Null
-New-Item -ItemType File -Force -Path "types\comment.types.js" | Out-Null
-New-Item -ItemType File -Force -Path "types\api.types.js" | Out-Null
-New-Item -ItemType File -Force -Path "types\index.js" | Out-Null
+# Create API documentation files
+New-Item -ItemType File -Force -Path "api\authentication.md" | Out-Null
+New-Item -ItemType File -Force -Path "api\users.md" | Out-Null
+New-Item -ItemType File -Force -Path "api\posts.md" | Out-Null
+New-Item -ItemType File -Force -Path "api\comments.md" | Out-Null
+New-Item -ItemType File -Force -Path "api\admin.md" | Out-Null
+New-Item -ItemType File -Force -Path "api\ai-assistant.md" | Out-Null
+New-Item -ItemType File -Force -Path "api\websocket.md" | Out-Null
+New-Item -ItemType File -Force -Path "api\index.md" | Out-Null
 
-# Create constant files
-New-Item -ItemType File -Force -Path "constants\roles.js" | Out-Null
-New-Item -ItemType File -Force -Path "constants\status.js" | Out-Null
-New-Item -ItemType File -Force -Path "constants\tags.js" | Out-Null
-New-Item -ItemType File -Force -Path "constants\errors.js" | Out-Null
-New-Item -ItemType File -Force -Path "constants\config.js" | Out-Null
-New-Item -ItemType File -Force -Path "constants\index.js" | Out-Null
+# Create guide files
+New-Item -ItemType File -Force -Path "guides\getting-started.md" | Out-Null
+New-Item -ItemType File -Force -Path "guides\intern-onboarding.md" | Out-Null
+New-Item -ItemType File -Force -Path "guides\project-submission.md" | Out-Null
+New-Item -ItemType File -Force -Path "guides\admin-guide.md" | Out-Null
+New-Item -ItemType File -Force -Path "guides\ai-assistant-guide.md" | Out-Null
+New-Item -ItemType File -Force -Path "guides\best-practices.md" | Out-Null
+New-Item -ItemType File -Force -Path "guides\faq.md" | Out-Null
 
-# Create utility files
-New-Item -ItemType File -Force -Path "utils\formatters.js" | Out-Null
-New-Item -ItemType File -Force -Path "utils\helpers.js" | Out-Null
-New-Item -ItemType File -Force -Path "utils\dateUtils.js" | Out-Null
-New-Item -ItemType File -Force -Path "utils\stringUtils.js" | Out-Null
-New-Item -ItemType File -Force -Path "utils\index.js" | Out-Null
+# Create setup files
+New-Item -ItemType File -Force -Path "setup\installation.md" | Out-Null
+New-Item -ItemType File -Force -Path "setup\environment-variables.md" | Out-Null
+New-Item -ItemType File -Force -Path "setup\firebase-setup.md" | Out-Null
+New-Item -ItemType File -Force -Path "setup\database-setup.md" | Out-Null
+New-Item -ItemType File -Force -Path "setup\troubleshooting.md" | Out-Null
 
-# Create validator files
-New-Item -ItemType File -Force -Path "validators\auth.validator.js" | Out-Null
-New-Item -ItemType File -Force -Path "validators\post.validator.js" | Out-Null
-New-Item -ItemType File -Force -Path "validators\user.validator.js" | Out-Null
-New-Item -ItemType File -Force -Path "validators\comment.validator.js" | Out-Null
-New-Item -ItemType File -Force -Path "validators\index.js" | Out-Null
+# Create architecture files
+New-Item -ItemType File -Force -Path "architecture\overview.md" | Out-Null
+New-Item -ItemType File -Force -Path "architecture\frontend.md" | Out-Null
+New-Item -ItemType File -Force -Path "architecture\backend.md" | Out-Null
+New-Item -ItemType File -Force -Path "architecture\database-schema.md" | Out-Null
+New-Item -ItemType File -Force -Path "architecture\security.md" | Out-Null
+New-Item -ItemType File -Force -Path "architecture\scalability.md" | Out-Null
 
-# Create schema files
-New-Item -ItemType File -Force -Path "schemas\user.schema.js" | Out-Null
-New-Item -ItemType File -Force -Path "schemas\post.schema.js" | Out-Null
-New-Item -ItemType File -Force -Path "schemas\comment.schema.js" | Out-Null
-New-Item -ItemType File -Force -Path "schemas\notification.schema.js" | Out-Null
-New-Item -ItemType File -Force -Path "schemas\index.js" | Out-Null
+# Create database files
+New-Item -ItemType File -Force -Path "database\collections.md" | Out-Null
+New-Item -ItemType File -Force -Path "database\relationships.md" | Out-Null
+New-Item -ItemType File -Force -Path "database\indexes.md" | Out-Null
+New-Item -ItemType File -Force -Path "database\security-rules.md" | Out-Null
+New-Item -ItemType File -Force -Path "database\backup-strategy.md" | Out-Null
 
-# Create enum files
-New-Item -ItemType File -Force -Path "enums\role.enum.js" | Out-Null
-New-Item -ItemType File -Force -Path "enums\postStatus.enum.js" | Out-Null
-New-Item -ItemType File -Force -Path "enums\notificationType.enum.js" | Out-Null
-New-Item -ItemType File -Force -Path "enums\actionType.enum.js" | Out-Null
-New-Item -ItemType File -Force -Path "enums\index.js" | Out-Null
+# Create deployment files
+New-Item -ItemType File -Force -Path "deployment\production-guide.md" | Out-Null
+New-Item -ItemType File -Force -Path "deployment\vercel-deploy.md" | Out-Null
+New-Item -ItemType File -Force -Path "deployment\firebase-hosting.md" | Out-Null
+New-Item -ItemType File -Force -Path "deployment\ci-cd-pipeline.md" | Out-Null
+New-Item -ItemType File -Force -Path "deployment\monitoring.md" | Out-Null
 
-# Create interface files
-New-Item -ItemType File -Force -Path "interfaces\IUser.js" | Out-Null
-New-Item -ItemType File -Force -Path "interfaces\IPost.js" | Out-Null
-New-Item -ItemType File -Force -Path "interfaces\IComment.js" | Out-Null
-New-Item -ItemType File -Force -Path "interfaces\IApiResponse.js" | Out-Null
-New-Item -ItemType File -Force -Path "interfaces\index.js" | Out-Null
+# Create testing files
+New-Item -ItemType File -Force -Path "testing\unit-testing.md" | Out-Null
+New-Item -ItemType File -Force -Path "testing\integration-testing.md" | Out-Null
+New-Item -ItemType File -Force -Path "testing\e2e-testing.md" | Out-Null
+New-Item -ItemType File -Force -Path "testing\api-testing.md" | Out-Null
+New-Item -ItemType File -Force -Path "testing\ci-testing.md" | Out-Null
 
-# Create root shared files
-New-Item -ItemType File -Force -Path "index.js" | Out-Null
-New-Item -ItemType File -Force -Path "package.json" | Out-Null
+# Create root documentation files
+New-Item -ItemType File -Force -Path "README.md" | Out-Null
+New-Item -ItemType File -Force -Path "CONTRIBUTING.md" | Out-Null
+New-Item -ItemType File -Force -Path "CHANGELOG.md" | Out-Null
+New-Item -ItemType File -Force -Path "LICENSE.md" | Out-Null
+New-Item -ItemType File -Force -Path "ROADMAP.md" | Out-Null
 
-Write-Host "✅ All shared files created" -ForegroundColor Green
+Write-Host "✅ All documentation files created" -ForegroundColor Green
 Write-Host ""
-Write-Host "📁 Shared folder structure:" -ForegroundColor Cyan
-Write-Host "shared/" -ForegroundColor Yellow
-Write-Host "├── types/           (5 files)" -ForegroundColor Gray
-Write-Host "├── constants/       (6 files)" -ForegroundColor Gray
-Write-Host "├── utils/           (5 files)" -ForegroundColor Gray
-Write-Host "├── validators/      (5 files)" -ForegroundColor Gray
-Write-Host "├── schemas/         (5 files)" -ForegroundColor Gray
-Write-Host "├── enums/           (5 files)" -ForegroundColor Gray
-Write-Host "├── interfaces/      (5 files)" -ForegroundColor Gray
-Write-Host "├── index.js" -ForegroundColor Gray
-Write-Host "└── package.json" -ForegroundColor Gray
+Write-Host "📁 Docs folder structure:" -ForegroundColor Cyan
+Write-Host "docs/" -ForegroundColor Yellow
+Write-Host "├── api/            (8 files)" -ForegroundColor Gray
+Write-Host "├── guides/         (7 files)" -ForegroundColor Gray
+Write-Host "├── setup/          (5 files)" -ForegroundColor Gray
+Write-Host "├── architecture/   (6 files)" -ForegroundColor Gray
+Write-Host "├── database/       (5 files)" -ForegroundColor Gray
+Write-Host "├── deployment/     (5 files)" -ForegroundColor Gray
+Write-Host "├── testing/        (5 files)" -ForegroundColor Gray
+Write-Host "└── root files      (5 files)" -ForegroundColor Gray
+Write-Host ""
+Write-Host "📊 Total: 51 documentation files created" -ForegroundColor Green
