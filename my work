@@ -1,0 +1,38 @@
+✅ 8. DEVELOPMENT ROADMAP
+Week 1: Foundation
+Setup project structure (both frontend & backend)
+
+Firebase/Firestore integration
+
+Authentication (register/login)
+
+Basic routing
+
+Week 2: Core Features
+Create & display posts
+
+Like/Comment system
+
+User profiles
+
+Basic feed
+
+Week 3: Admin & Moderation
+Admin panel (hidden route)
+
+Content approval queue
+
+User management
+
+Basic logs
+
+Week 4: Polish & Launch
+AI Assistant integration
+
+Search & filters
+
+Real-time notifications
+
+Responsive design
+
+Deploy to production
