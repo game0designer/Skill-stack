@@ -1,394 +1,97 @@
-#!/bin/bash
+# Create client directory
+New-Item -ItemType Directory -Force -Path "client" | Out-Null
+Set-Location "client"
 
-# Create client directory and navigate
-mkdir -p client
-cd client
-
-# Create public structure
-mkdir -p public/assets
-touch public/index.html
-touch public/assets/logo.svg
-touch public/assets/favicon.ico
-
-# Create src and all subdirectories
-mkdir -p src/components/common
-mkdir -p src/components/feed
-mkdir -p src/components/profile
-mkdir -p src/components/ai-assistant
-mkdir -p src/components/admin
-mkdir -p src/components/upload
-
-mkdir -p src/pages/admin
-
-mkdir -p src/hooks
-mkdir -p src/context
-mkdir -p src/services
-mkdir -p src/utils
-mkdir -p src/styles
+# Create all directories
+@(
+    "public\assets",
+    "src\components\common",
+    "src\components\feed",
+    "src\components\profile",
+    "src\components\ai-assistant",
+    "src\components\admin",
+    "src\components\upload",
+    "src\pages\admin",
+    "src\hooks",
+    "src\context",
+    "src\services",
+    "src\utils",
+    "src\styles"
+) | ForEach-Object {
+    New-Item -ItemType Directory -Force -Path $_ | Out-Null
+    Write-Host "Created: $_" -ForegroundColor Green
+}
 
 # Create component files
-touch src/components/common/Navbar.jsx
-touch src/components/common/Sidebar.jsx
-touch src/components/common/Footer.jsx
-touch src/components/common/LoadingSpinner.jsx
-touch src/components/common/ErrorBoundary.jsx
-
-touch src/components/feed/FeedContainer.jsx
-touch src/components/feed/ProjectCard.jsx
-touch src/components/feed/CreatePostModal.jsx
-touch src/components/feed/LikeButton.jsx
-touch src/components/feed/CommentSection.jsx
-touch src/components/feed/CommentItem.jsx
-
-touch src/components/profile/ProfileHeader.jsx
-touch src/components/profile/ProfileProjects.jsx
-touch src/components/profile/ProfileActivity.jsx
-touch src/components/profile/EditProfileModal.jsx
-
-touch src/components/ai-assistant/AIChatWindow.jsx
-touch src/components/ai-assistant/ChatMessage.jsx
-touch src/components/ai-assistant/VoiceInput.jsx
-touch src/components/ai-assistant/CodeSuggestion.jsx
-
-touch src/components/admin/AdminLayout.jsx
-touch src/components/admin/UserManagement.jsx
-touch src/components/admin/ContentApproval.jsx
-touch src/components/admin/FeedControl.jsx
-touch src/components/admin/SystemLogs.jsx
-touch src/components/admin/InternshipControl.jsx
-
-touch src/components/upload/ProjectUploadForm.jsx
-touch src/components/upload/ImageUploader.jsx
-touch src/components/upload/TagSelector.jsx
-
-# Create page files
-touch src/pages/LandingPage.jsx
-touch src/pages/FeedPage.jsx
-touch src/pages/ProfilePage.jsx
-touch src/pages/ProjectPage.jsx
-touch src/pages/MyProjectsPage.jsx
-touch src/pages/AIPage.jsx
-touch src/pages/SettingsPage.jsx
-touch src/pages/admin/AdminDashboard.jsx
-touch src/pages/admin/AdminUsers.jsx
-touch src/pages/admin/AdminPosts.jsx
-touch src/pages/admin/AdminLogs.jsx
-
-# Create hook files
-touch src/hooks/useAuth.js
-touch src/hooks/useFeed.js
-touch src/hooks/useLikes.js
-touch src/hooks/useComments.js
-touch src/hooks/useProjects.js
-touch src/hooks/useInfiniteScroll.js
-
-# Create context files
-touch src/context/AuthContext.jsx
-touch src/context/ThemeContext.jsx
-touch src/context/SocketContext.jsx
-
-# Create service files
-touch src/services/api.js
-touch src/services/authService.js
-touch src/services/postService.js
-touch src/services/userService.js
-touch src/services/commentService.js
-touch src/services/likeService.js
-touch src/services/aiService.js
-touch src/services/uploadService.js
-
-# Create utility files
-touch src/utils/constants.js
-touch src/utils/helpers.js
-touch src/utils/validators.js
-touch src/utils/formatters.js
-
-# Create style files
-touch src/styles/globals.css
-touch src/styles/theme.js
-
-# Create root files
-touch src/App.jsx
-touch src/AppRoutes.jsx
-touch src/index.js
-
-# Create config files
-cat > package.json << 'EOF'
-{
-  "name": "devforge-client",
-  "private": true,
-  "version": "0.1.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.0",
-    "axios": "^1.4.0",
-    "react-query": "^3.39.0",
-    "react-hot-toast": "^2.4.0",
-    "framer-motion": "^10.12.0",
-    "react-hook-form": "^7.45.0",
-    "react-infinite-scroll-component": "^6.1.0",
-    "socket.io-client": "^4.6.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.24",
-    "tailwindcss": "^3.3.2",
-    "vite": "^4.3.9"
-  }
-}
-EOF
-
-cat > vite.config.js << 'EOF'
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      }
-    }
-  }
-})
-EOF
-
-cat > tailwind.config.js << 'EOF'
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#6366f1',
-        secondary: '#8b5cf6',
-        dark: '#0f172a',
-      },
-      fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-      },
-    },
-  },
-  plugins: [],
-}
-EOF
-
-cat > .env << 'EOF'
-VITE_API_URL=http://localhost:5000/api
-VITE_SOCKET_URL=http://localhost:5001
-VITE_FIREBASE_API_KEY=your_firebase_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
-EOF
-
-cat > src/index.js << 'EOF'
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './styles/globals.css'
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
-EOF
-
-cat > src/App.jsx << 'EOF'
-import { BrowserRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { Toaster } from 'react-hot-toast'
-import { AuthProvider } from './context/AuthContext'
-import AppRoutes from './AppRoutes'
-
-const queryClient = new QueryClient()
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <BrowserRouter>
-          <AppRoutes />
-          <Toaster position="top-right" />
-        </BrowserRouter>
-      </AuthProvider>
-    </QueryClientProvider>
-  )
+@(
+    "src\components\common\Navbar.jsx",
+    "src\components\common\Sidebar.jsx",
+    "src\components\common\Footer.jsx",
+    "src\components\common\LoadingSpinner.jsx",
+    "src\components\common\ErrorBoundary.jsx",
+    "src\components\feed\FeedContainer.jsx",
+    "src\components\feed\ProjectCard.jsx",
+    "src\components\feed\CreatePostModal.jsx",
+    "src\components\feed\LikeButton.jsx",
+    "src\components\feed\CommentSection.jsx",
+    "src\components\feed\CommentItem.jsx",
+    "src\components\profile\ProfileHeader.jsx",
+    "src\components\profile\ProfileProjects.jsx",
+    "src\components\profile\ProfileActivity.jsx",
+    "src\components\profile\EditProfileModal.jsx",
+    "src\components\ai-assistant\AIChatWindow.jsx",
+    "src\components\ai-assistant\ChatMessage.jsx",
+    "src\components\ai-assistant\VoiceInput.jsx",
+    "src\components\ai-assistant\CodeSuggestion.jsx",
+    "src\components\admin\AdminLayout.jsx",
+    "src\components\admin\UserManagement.jsx",
+    "src\components\admin\ContentApproval.jsx",
+    "src\components\admin\FeedControl.jsx",
+    "src\components\admin\SystemLogs.jsx",
+    "src\components\admin\InternshipControl.jsx",
+    "src\components\upload\ProjectUploadForm.jsx",
+    "src\components\upload\ImageUploader.jsx",
+    "src\components\upload\TagSelector.jsx",
+    "src\pages\LandingPage.jsx",
+    "src\pages\FeedPage.jsx",
+    "src\pages\ProfilePage.jsx",
+    "src\pages\ProjectPage.jsx",
+    "src\pages\MyProjectsPage.jsx",
+    "src\pages\AIPage.jsx",
+    "src\pages\SettingsPage.jsx",
+    "src\pages\admin\AdminDashboard.jsx",
+    "src\pages\admin\AdminUsers.jsx",
+    "src\pages\admin\AdminPosts.jsx",
+    "src\pages\admin\AdminLogs.jsx",
+    "src\hooks\useAuth.js",
+    "src\hooks\useFeed.js",
+    "src\hooks\useLikes.js",
+    "src\hooks\useComments.js",
+    "src\hooks\useProjects.js",
+    "src\hooks\useInfiniteScroll.js",
+    "src\context\AuthContext.jsx",
+    "src\context\ThemeContext.jsx",
+    "src\context\SocketContext.jsx",
+    "src\services\api.js",
+    "src\services\authService.js",
+    "src\services\postService.js",
+    "src\services\userService.js",
+    "src\services\commentService.js",
+    "src\services\likeService.js",
+    "src\services\aiService.js",
+    "src\services\uploadService.js",
+    "src\utils\constants.js",
+    "src\utils\helpers.js",
+    "src\utils\validators.js",
+    "src\utils\formatters.js",
+    "src\styles\globals.css",
+    "src\styles\theme.js",
+    "src\App.jsx",
+    "src\AppRoutes.jsx",
+    "src\index.js"
+) | ForEach-Object {
+    New-Item -ItemType File -Force -Path $_ | Out-Null
+    Write-Host "Created: $_" -ForegroundColor Yellow
 }
 
-export default App
-EOF
-
-cat > src/AppRoutes.jsx << 'EOF'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { useAuth } from './hooks/useAuth'
-import LandingPage from './pages/LandingPage'
-import FeedPage from './pages/FeedPage'
-import ProfilePage from './pages/ProfilePage'
-import ProjectPage from './pages/ProjectPage'
-import MyProjectsPage from './pages/MyProjectsPage'
-import AIPage from './pages/AIPage'
-import SettingsPage from './pages/SettingsPage'
-import AdminDashboard from './pages/admin/AdminDashboard'
-
-const PrivateRoute = ({ children }) => {
-  const { user, loading } = useAuth()
-  if (loading) return <div>Loading...</div>
-  return user ? children : <Navigate to="/" />
-}
-
-const AdminRoute = ({ children }) => {
-  const { user, loading } = useAuth()
-  if (loading) return <div>Loading...</div>
-  return user?.role === 'admin' ? children : <Navigate to="/feed" />
-}
-
-function AppRoutes() {
-  return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/feed" element={<PrivateRoute><FeedPage /></PrivateRoute>} />
-      <Route path="/:username" element={<ProfilePage />} />
-      <Route path="/project/:id" element={<ProjectPage />} />
-      <Route path="/my-projects" element={<PrivateRoute><MyProjectsPage /></PrivateRoute>} />
-      <Route path="/ai-assistant" element={<PrivateRoute><AIPage /></PrivateRoute>} />
-      <Route path="/settings" element={<PrivateRoute><SettingsPage /></PrivateRoute>} />
-      <Route path="/staff/console" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-    </Routes>
-  )
-}
-
-export default AppRoutes
-EOF
-
-cat > src/styles/globals.css << 'EOF'
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  body {
-    @apply bg-dark text-white font-sans;
-  }
-}
-
-@layer components {
-  .glassmorphism {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
-  }
-  
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
-  }
-}
-EOF
-
-cat > public/index.html << 'EOF'
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DevForge - Build. Learn. Grow.</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/index.js"></script>
-  </body>
-</html>
-EOF
-
-# Create a simple SVG logo
-cat > public/assets/logo.svg << 'EOF'
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <rect width="100" height="100" rx="20" fill="#6366f1"/>
-  <text x="50" y="68" text-anchor="middle" fill="white" font-size="48" font-weight="bold" font-family="Arial">DF</text>
-</svg>
-EOF
-
-echo "✅ Client folder structure created successfully!"
-echo "📁 Location: ./client"
-echo ""
-echo "Next steps:"
-echo "1. cd client"
-echo "2. npm install"
-echo "3. npm run dev"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#errors 
-At line:151 char:23
-+ cat > vite.config.js << 'EOF'
-+                       ~
-Missing file specification after redirection operator.
-At line:151 char:22
-+ cat > vite.config.js << 'EOF'
-+                      ~
-The '<' operator is reserved for future use.
-At line:151 char:23
-+ cat > vite.config.js << 'EOF'
-+                       ~
-The '<' operator is reserved for future use.
-Not all parse errors were reported.  Correct the reported errors and try again.
-    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : MissingFileSpecification
+Write-Host "`n✅ Directory structure created!" -ForegroundColor Green
