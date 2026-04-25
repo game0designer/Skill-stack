@@ -1,47 +1,266 @@
-// AppRoutes.jsx - Updated with role-based routing
+✅ Correct Approach: Create Files Only (No Code Execution)
+Step 1: Create the Folder Structure Only
+powershell
+# Navigate to client/src/pages
+cd client/src/pages
 
-const routes = {
-  // Common routes (both interns & HR can access)
-  common: [
-    { path: "/", component: "LandingPage" },
-    { path: "/profile/:username", component: "ProfilePage" },
-    { path: "/project/:id", component: "ProjectPage" },
-    { path: "/settings", component: "SettingsPage" }
-  ],
-  
-  // Intern-only routes
-  intern: [
-    { path: "/intern/dashboard", component: "InternDashboard" },
-    { path: "/feed", component: "FeedPage" },
-    { path: "/my-projects", component: "MyProjectsPage" },
-    { path: "/create-project", component: "CreateProjectPage" },
-    { path: "/ai-assistant", component: "AIPage" },
-    { path: "/my-tasks", component: "TasksPage" },
-    { path: "/internship-progress", component: "InternshipProgressPage" },
-    { path: "/notifications", component: "NotificationsPage" }
-  ],
-  
-  // HR-only routes
-  hr: [
-    { path: "/hr/dashboard", component: "HRDashboard" },
-    { path: "/hr/interns", component: "InternManagement" },
-    { path: "/hr/applications", component: "InternApplications" },
-    { path: "/hr/evaluations", component: "InternEvaluation" },
-    { path: "/hr/attendance", component: "AttendanceTracking" },
-    { path: "/hr/reviews", component: "PerformanceReviews" },
-    { path: "/hr/onboard", component: "InternOnboarding" },
-    { path: "/hr/offboard", component: "InternOffboarding" }
-  ],
-  
-  // Super Admin-only routes
-  admin: [
-    { path: "/staff/console", component: "AdminDashboard" },
-    { path: "/staff/users", component: "UserManagement" },
-    { path: "/staff/posts", component: "PostManagement" },
-    { path: "/staff/comments", component: "CommentModeration" },
-    { path: "/staff/approvals", component: "ContentApproval" },
-    { path: "/staff/logs", component: "SystemLogs" },
-    { path: "/staff/ai-control", component: "AIControlPanel" },
-    { path: "/staff/analytics", component: "PlatformAnalytics" }
-  ]
+# Create directories
+New-Item -ItemType Directory -Force -Path "common" | Out-Null
+New-Item -ItemType Directory -Force -Path "intern" | Out-Null
+New-Item -ItemType Directory -Force -Path "hr" | Out-Null
+New-Item -ItemType Directory -Force -Path "admin" | Out-Null
+
+Write-Host "✅ Directories created" -ForegroundColor Green
+Step 2: Create All Page Files (Empty) - Use This Command
+powershell
+# Create all page files (empty placeholders)
+@(
+    # Common pages
+    "common\LandingPage.jsx",
+    "common\ProfilePage.jsx",
+    "common\ProjectPage.jsx",
+    "common\SettingsPage.jsx",
+    "common\NotFoundPage.jsx",
+    
+    # Intern pages
+    "intern\InternDashboard.jsx",
+    "intern\FeedPage.jsx",
+    "intern\MyProjectsPage.jsx",
+    "intern\CreateProjectPage.jsx",
+    "intern\AIPage.jsx",
+    "intern\TasksPage.jsx",
+    "intern\InternshipProgressPage.jsx",
+    "intern\NotificationsPage.jsx",
+    
+    # HR pages
+    "hr\HRDashboard.jsx",
+    "hr\InternManagement.jsx",
+    "hr\InternApplications.jsx",
+    "hr\InternEvaluation.jsx",
+    "hr\AttendanceTracking.jsx",
+    "hr\PerformanceReviews.jsx",
+    "hr\InternOnboarding.jsx",
+    "hr\InternOffboarding.jsx",
+    
+    # Admin pages
+    "admin\AdminDashboard.jsx",
+    "admin\UserManagement.jsx",
+    "admin\PostManagement.jsx",
+    "admin\CommentModeration.jsx",
+    "admin\ContentApproval.jsx",
+    "admin\SystemLogs.jsx",
+    "admin\AIControlPanel.jsx",
+    "admin\PlatformAnalytics.jsx"
+) | ForEach-Object {
+    New-Item -ItemType File -Force -Path $_ -Value "// $(Split-Path $_ -Leaf)" | Out-Null
+    Write-Host "Created: $_" -ForegroundColor Yellow
+}
+
+Write-Host "`n✅ All 29 page files created!" -ForegroundColor Green
+Step 3: Verify Structure
+powershell
+# Show the folder structure
+Write-Host "`n📁 Pages Structure:" -ForegroundColor Cyan
+tree /F
+📝 The JavaScript Code (FOR REFERENCE ONLY - Don't paste in PowerShell)
+This is just for you to copy into your AppRoutes.jsx file later:
+
+javascript
+// This goes in client/src/AppRoutes.jsx (don't paste in PowerShell)
+
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth';
+
+// Common pages
+import LandingPage from './pages/common/LandingPage';
+import ProfilePage from './pages/common/ProfilePage';
+import ProjectPage from './pages/common/ProjectPage';
+import SettingsPage from './pages/common/SettingsPage';
+import NotFoundPage from './pages/common/NotFoundPage';
+
+// Intern pages
+import InternDashboard from './pages/intern/InternDashboard';
+import FeedPage from './pages/intern/FeedPage';
+import MyProjectsPage from './pages/intern/MyProjectsPage';
+import CreateProjectPage from './pages/intern/CreateProjectPage';
+import AIPage from './pages/intern/AIPage';
+import TasksPage from './pages/intern/TasksPage';
+import InternshipProgressPage from './pages/intern/InternshipProgressPage';
+import NotificationsPage from './pages/intern/NotificationsPage';
+
+// HR pages
+import HRDashboard from './pages/hr/HRDashboard';
+import InternManagement from './pages/hr/InternManagement';
+import InternApplications from './pages/hr/InternApplications';
+import InternEvaluation from './pages/hr/InternEvaluation';
+import AttendanceTracking from './pages/hr/AttendanceTracking';
+import PerformanceReviews from './pages/hr/PerformanceReviews';
+import InternOnboarding from './pages/hr/InternOnboarding';
+import InternOffboarding from './pages/hr/InternOffboarding';
+
+// Admin pages
+import AdminDashboard from './pages/admin/AdminDashboard';
+import UserManagement from './pages/admin/UserManagement';
+import PostManagement from './pages/admin/PostManagement';
+import CommentModeration from './pages/admin/CommentModeration';
+import ContentApproval from './pages/admin/ContentApproval';
+import SystemLogs from './pages/admin/SystemLogs';
+import AIControlPanel from './pages/admin/AIControlPanel';
+import PlatformAnalytics from './pages/admin/PlatformAnalytics';
+
+const PrivateRoute = ({ children, allowedRoles }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <Navigate to="/" />;
+  if (allowedRoles && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/" />;
+  }
+  return children;
 };
+
+function AppRoutes() {
+  return (
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/profile/:username" element={<ProfilePage />} />
+      <Route path="/project/:id" element={<ProjectPage />} />
+      
+      {/* Intern Routes */}
+      <Route path="/intern/dashboard" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <InternDashboard />
+        </PrivateRoute>
+      } />
+      <Route path="/feed" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <FeedPage />
+        </PrivateRoute>
+      } />
+      <Route path="/my-projects" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <MyProjectsPage />
+        </PrivateRoute>
+      } />
+      <Route path="/create-project" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <CreateProjectPage />
+        </PrivateRoute>
+      } />
+      <Route path="/ai-assistant" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <AIPage />
+        </PrivateRoute>
+      } />
+      <Route path="/my-tasks" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <TasksPage />
+        </PrivateRoute>
+      } />
+      <Route path="/internship-progress" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <InternshipProgressPage />
+        </PrivateRoute>
+      } />
+      <Route path="/notifications" element={
+        <PrivateRoute allowedRoles={['intern']}>
+          <NotificationsPage />
+        </PrivateRoute>
+      } />
+      
+      {/* HR Routes */}
+      <Route path="/hr/dashboard" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <HRDashboard />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/interns" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternManagement />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/applications" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternApplications />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/evaluations" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternEvaluation />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/attendance" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <AttendanceTracking />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/reviews" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <PerformanceReviews />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/onboard" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternOnboarding />
+        </PrivateRoute>
+      } />
+      <Route path="/hr/offboard" element={
+        <PrivateRoute allowedRoles={['hr', 'admin']}>
+          <InternOffboarding />
+        </PrivateRoute>
+      } />
+      <Route path="/settings" element={
+        <PrivateRoute allowedRoles={['intern', 'hr', 'admin']}>
+          <SettingsPage />
+        </PrivateRoute>
+      } />
+      
+      {/* Super Admin Routes */}
+      <Route path="/staff/console" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <AdminDashboard />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/users" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <UserManagement />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/posts" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <PostManagement />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/comments" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <CommentModeration />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/approvals" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <ContentApproval />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/logs" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <SystemLogs />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/ai-control" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <AIControlPanel />
+        </PrivateRoute>
+      } />
+      <Route path="/staff/analytics" element={
+        <PrivateRoute allowedRoles={['admin']}>
+          <PlatformAnalytics />
+        </PrivateRoute>
+      } />
+      
+      {/* 404 */}
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
+}
+
+export default AppRoutes;
