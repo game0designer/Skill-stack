@@ -1,0 +1,52 @@
+// 📁 docs/API.md
+
+// ========== AUTH ==========
+POST    /api/auth/register          // Register new intern
+POST    /api/auth/login             // Login user
+POST    /api/auth/logout            // Logout
+GET     /api/auth/me                // Get current user
+
+// ========== POSTS (Projects) ==========
+GET     /api/posts/feed             // Get feed posts (paginated)
+GET     /api/posts/:postId          // Get single post
+POST    /api/posts                  // Create new post
+PUT     /api/posts/:postId          // Update post
+DELETE  /api/posts/:postId          // Delete post
+GET     /api/posts/user/:userId     // Get user's posts
+
+// ========== COMMENTS ==========
+GET     /api/comments/post/:postId  // Get comments for post
+POST    /api/comments               // Create comment
+PUT     /api/comments/:commentId    // Update comment
+DELETE  /api/comments/:commentId    // Delete comment
+
+// ========== LIKES & SAVES ==========
+POST    /api/likes/toggle           // Like/unlike post/comment
+POST    /api/saves/toggle           // Save/unsave post
+GET     /api/user/saves             // Get saved posts
+
+// ========== USERS ==========
+GET     /api/users/:username        // Get user profile
+PUT     /api/users/profile          // Update profile
+GET     /api/users/search           // Search users
+GET     /api/users/trending         // Get trending interns
+
+// ========== AI ASSISTANT ==========
+POST    /api/ai/improve-description // Enhance project description
+POST    /api/ai/chat                // Chat with AI
+POST    /api/ai/fix-code            // Suggest code fixes
+
+// ========== UPLOAD ==========
+POST    /api/upload/image           // Upload image for post
+POST    /api/upload/avatar          // Upload profile picture
+
+// ========== ADMIN (Protected) ==========
+GET     /api/admin/users            // Get all users
+PUT     /api/admin/users/:userId    // Update user (ban/edit)
+DELETE  /api/admin/users/:userId    // Delete user
+GET     /api/admin/posts/pending    // Get pending posts
+POST    /api/admin/posts/:postId/approve   // Approve post
+POST    /api/admin/posts/:postId/reject    // Reject post
+DELETE  /api/admin/posts/:postId    // Force delete post
+GET     /api/admin/logs              // Get system logs
+PUT     /api/admin/internship/:userId    // Update internship duration
