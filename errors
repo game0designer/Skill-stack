@@ -1,0 +1,111 @@
+database : The term 'database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At line:12 char:27
++          get(/databases/$(database)/documents/users/$(request.auth.ui ...
++                           ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (database:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+request.auth.uid : The term 'request.auth.uid' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:12 char:55
++ ... get(/databases/$(database)/documents/users/$(request.auth.uid)).data. ...
++                                                  ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (request.auth.uid:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+database : The term 'database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At line:20 char:28
++           get(/databases/$(database)/documents/users/$(request.auth.u ...
++                            ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (database:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+request.auth.uid : The term 'request.auth.uid' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:20 char:56
++ ... get(/databases/$(database)/documents/users/$(request.auth.uid)).data. ...
++                                                  ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (request.auth.uid:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+database : The term 'database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At line:26 char:27
++          get(/databases/$(database)/documents/users/$(request.auth.ui ...
++                           ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (database:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+request.auth.uid : The term 'request.auth.uid' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:26 char:55
++ ... get(/databases/$(database)/documents/users/$(request.auth.uid)).data. ...
++                                                  ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (request.auth.uid:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+database : The term 'database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At line:29 char:26
++         get(/databases/$(database)/documents/users/$(request.auth.uid ...
++                          ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (database:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+request.auth.uid : The term 'request.auth.uid' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:29 char:54
++ ... get(/databases/$(database)/documents/users/$(request.auth.uid)).data. ...
++                                                  ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (request.auth.uid:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+database : The term 'database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At line:38 char:27
++          get(/databases/$(database)/documents/users/$(request.auth.ui ...
++                           ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (database:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+request.auth.uid : The term 'request.auth.uid' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:38 char:55
++ ... get(/databases/$(database)/documents/users/$(request.auth.uid)).data. ...
++                                                  ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (request.auth.uid:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+database : The term 'database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At line:41 char:27
++          get(/databases/$(database)/documents/users/$(request.auth.ui ...
++                           ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (database:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+request.auth.uid : The term 'request.auth.uid' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:41 char:55
++ ... get(/databases/$(database)/documents/users/$(request.auth.uid)).data. ...
++                                                  ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (request.auth.uid:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+database : The term 'database' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was 
+included, verify that the path is correct and try again.
+At line:67 char:26
++         get(/databases/$(database)/documents/users/$(request.auth.uid ...
++                          ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (database:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+request.auth.uid : The term 'request.auth.uid' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:67 char:54
++ ... get(/databases/$(database)/documents/users/$(request.auth.uid)).data. ...
++                                                  ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (request.auth.uid:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
