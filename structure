@@ -1,0 +1,190 @@
+devforge/
+│
+├── 📁 client/                 # React Frontend
+├── 📁 server/                 # Node.js/Express Backend
+├── 📁 database/              # Firebase/Supabase Config
+├── 📁 shared/                # Types & Utilities (both sides)
+└── 📁 docs/                  # Documentation
+
+
+client/
+│
+├── 📁 public/
+│   ├── index.html
+│   └── assets/
+│       ├── logo.svg
+│       └── favicon.ico
+│
+├── 📁 src/
+│   │
+│   ├── 📁 components/
+│   │   ├── 📁 common/
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── LoadingSpinner.jsx
+│   │   │   └── ErrorBoundary.jsx
+│   │   │
+│   │   ├── 📁 feed/
+│   │   │   ├── FeedContainer.jsx
+│   │   │   ├── ProjectCard.jsx
+│   │   │   ├── CreatePostModal.jsx
+│   │   │   ├── LikeButton.jsx
+│   │   │   ├── CommentSection.jsx
+│   │   │   └── CommentItem.jsx
+│   │   │
+│   │   ├── 📁 profile/
+│   │   │   ├── ProfileHeader.jsx
+│   │   │   ├── ProfileProjects.jsx
+│   │   │   ├── ProfileActivity.jsx
+│   │   │   └── EditProfileModal.jsx
+│   │   │
+│   │   ├── 📁 ai-assistant/
+│   │   │   ├── AIChatWindow.jsx
+│   │   │   ├── ChatMessage.jsx
+│   │   │   ├── VoiceInput.jsx
+│   │   │   └── CodeSuggestion.jsx
+│   │   │
+│   │   ├── 📁 admin/
+│   │   │   ├── AdminLayout.jsx
+│   │   │   ├── UserManagement.jsx
+│   │   │   ├── ContentApproval.jsx
+│   │   │   ├── FeedControl.jsx
+│   │   │   ├── SystemLogs.jsx
+│   │   │   └── InternshipControl.jsx
+│   │   │
+│   │   └── 📁 upload/
+│   │       ├── ProjectUploadForm.jsx
+│   │       ├── ImageUploader.jsx
+│   │       └── TagSelector.jsx
+│   │
+│   ├── 📁 pages/
+│   │   ├── LandingPage.jsx
+│   │   ├── FeedPage.jsx          # Main social feed
+│   │   ├── ProfilePage.jsx       # /u/:username
+│   │   ├── ProjectPage.jsx       # /project/:id
+│   │   ├── MyProjectsPage.jsx
+│   │   ├── AIPage.jsx
+│   │   ├── SettingsPage.jsx
+│   │   └── 📁 admin/
+│   │       ├── AdminDashboard.jsx
+│   │       ├── AdminUsers.jsx
+│   │       ├── AdminPosts.jsx
+│   │       └── AdminLogs.jsx
+│   │
+│   ├── 📁 hooks/
+│   │   ├── useAuth.js
+│   │   ├── useFeed.js
+│   │   ├── useLikes.js
+│   │   ├── useComments.js
+│   │   ├── useProjects.js
+│   │   └── useInfiniteScroll.js
+│   │
+│   ├── 📁 context/
+│   │   ├── AuthContext.jsx
+│   │   ├── ThemeContext.jsx
+│   │   └── SocketContext.jsx    # For real-time notifications
+│   │
+│   ├── 📁 services/
+│   │   ├── api.js               # Axios instance
+│   │   ├── authService.js
+│   │   ├── postService.js
+│   │   ├── userService.js
+│   │   ├── commentService.js
+│   │   ├── likeService.js
+│   │   ├── aiService.js
+│   │   └── uploadService.js
+│   │
+│   ├── 📁 utils/
+│   │   ├── constants.js
+│   │   ├── helpers.js
+│   │   ├── validators.js
+│   │   └── formatters.js
+│   │
+│   ├── 📁 styles/
+│   │   ├── globals.css
+│   │   └── theme.js
+│   │
+│   ├── App.jsx
+│   ├── AppRoutes.jsx
+│   └── index.js
+│
+├── package.json
+├── tailwind.config.js
+├── vite.config.js               # or webpack.config.js
+└── .env
+
+
+server/
+│
+├── 📁 controllers/
+│   ├── authController.js
+│   ├── postController.js
+│   ├── userController.js
+│   ├── commentController.js
+│   ├── likeController.js
+│   ├── feedController.js
+│   ├── adminController.js
+│   ├── aiController.js
+│   └── uploadController.js
+│
+├── 📁 models/
+│   ├── User.js
+│   ├── Post.js
+│   ├── Comment.js
+│   ├── Like.js
+│   ├── Notification.js
+│   ├── AdminLog.js
+│   └── Internship.js
+│
+├── 📁 routes/
+│   ├── authRoutes.js
+│   ├── postRoutes.js
+│   ├── userRoutes.js
+│   ├── commentRoutes.js
+│   ├── feedRoutes.js
+│   ├── adminRoutes.js
+│   ├── aiRoutes.js
+│   └── uploadRoutes.js
+│
+├── 📁 middleware/
+│   ├── authMiddleware.js
+│   ├── adminMiddleware.js
+│   ├── uploadMiddleware.js
+│   ├── rateLimiter.js
+│   ├── validationMiddleware.js
+│   └── errorHandler.js
+│
+├── 📁 services/
+│   ├── emailService.js
+│   ├── aiService.js           # OpenAI/Claude integration
+│   ├── storageService.js      # Firebase/S3 uploads
+│   ├── notificationService.js
+│   ├── searchService.js       # For feed search
+│   └── logService.js          # For admin logs
+│
+├── 📁 config/
+│   ├── database.js            # Firebase/Supabase init
+│   ├── firebase.js
+│   ├── redis.js               # For caching
+│   └── socket.js              # WebSocket server
+│
+├── 📁 utils/
+│   ├── generateToken.js
+│   ├── hashPassword.js
+│   ├── sanitize.js
+│   └── validators.js
+│
+├── 📁 sockets/
+│   ├── index.js
+│   ├── notificationSocket.js
+│   └── chatSocket.js
+│
+├── 📁 jobs/                   # Cron jobs
+│   ├── cleanupLogs.js
+│   ├── sendDigest.js
+│   └── checkInternshipStatus.js
+│
+├── server.js
+├── package.json
+└── .env
