@@ -1,49 +1,47 @@
-# Navigate to client/src/pages
-cd client/src/pages
+// AppRoutes.jsx - Updated with role-based routing
 
-# Create the complete page structure with separate HR and Intern folders
-New-Item -ItemType Directory -Force -Path "hr" | Out-Null
-New-Item -ItemType Directory -Force -Path "intern" | Out-Null
-New-Item -ItemType Directory -Force -Path "common" | Out-Null
-New-Item -ItemType Directory -Force -Path "admin" | Out-Null
-
-Write-Host "✅ Page directories created" -ForegroundColor Green
-
-# ============ COMMON PAGES (Both can access) ============
-New-Item -ItemType File -Force -Path "common\LandingPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "common\ProfilePage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "common\ProjectPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "common\SettingsPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "common\NotFoundPage.jsx" | Out-Null
-
-# ============ INTERN PAGES ============
-New-Item -ItemType File -Force -Path "intern\InternDashboard.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "intern\FeedPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "intern\MyProjectsPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "intern\CreateProjectPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "intern\AIPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "intern\TasksPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "intern\InternshipProgressPage.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "intern\NotificationsPage.jsx" | Out-Null
-
-# ============ HR PAGES (Human Resources / Admin) ============
-New-Item -ItemType File -Force -Path "hr\HRDashboard.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "hr\InternManagement.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "hr\InternApplications.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "hr\InternEvaluation.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "hr\AttendanceTracking.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "hr\PerformanceReviews.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "hr\InternOnboarding.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "hr\InternOffboarding.jsx" | Out-Null
-
-# ============ SUPER ADMIN PAGES (Platform Control) ============
-New-Item -ItemType File -Force -Path "admin\AdminDashboard.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "admin\UserManagement.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "admin\PostManagement.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "admin\CommentModeration.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "admin\ContentApproval.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "admin\SystemLogs.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "admin\AIControlPanel.jsx" | Out-Null
-New-Item -ItemType File -Force -Path "admin\PlatformAnalytics.jsx" | Out-Null
-
-Write-Host "✅ All page files created" -ForegroundColor Green
+const routes = {
+  // Common routes (both interns & HR can access)
+  common: [
+    { path: "/", component: "LandingPage" },
+    { path: "/profile/:username", component: "ProfilePage" },
+    { path: "/project/:id", component: "ProjectPage" },
+    { path: "/settings", component: "SettingsPage" }
+  ],
+  
+  // Intern-only routes
+  intern: [
+    { path: "/intern/dashboard", component: "InternDashboard" },
+    { path: "/feed", component: "FeedPage" },
+    { path: "/my-projects", component: "MyProjectsPage" },
+    { path: "/create-project", component: "CreateProjectPage" },
+    { path: "/ai-assistant", component: "AIPage" },
+    { path: "/my-tasks", component: "TasksPage" },
+    { path: "/internship-progress", component: "InternshipProgressPage" },
+    { path: "/notifications", component: "NotificationsPage" }
+  ],
+  
+  // HR-only routes
+  hr: [
+    { path: "/hr/dashboard", component: "HRDashboard" },
+    { path: "/hr/interns", component: "InternManagement" },
+    { path: "/hr/applications", component: "InternApplications" },
+    { path: "/hr/evaluations", component: "InternEvaluation" },
+    { path: "/hr/attendance", component: "AttendanceTracking" },
+    { path: "/hr/reviews", component: "PerformanceReviews" },
+    { path: "/hr/onboard", component: "InternOnboarding" },
+    { path: "/hr/offboard", component: "InternOffboarding" }
+  ],
+  
+  // Super Admin-only routes
+  admin: [
+    { path: "/staff/console", component: "AdminDashboard" },
+    { path: "/staff/users", component: "UserManagement" },
+    { path: "/staff/posts", component: "PostManagement" },
+    { path: "/staff/comments", component: "CommentModeration" },
+    { path: "/staff/approvals", component: "ContentApproval" },
+    { path: "/staff/logs", component: "SystemLogs" },
+    { path: "/staff/ai-control", component: "AIControlPanel" },
+    { path: "/staff/analytics", component: "PlatformAnalytics" }
+  ]
+};
